@@ -1,0 +1,126 @@
+/* CSS Document */
+
+:root {
+--background-color: #0e0e0e;
+--font-color: #F2F2F2;
+--accent-color: red;
+--gradient1: linear-gradient(180deg, rgb(0, 132, 144) 0%, rgb(132,224,233,1) 40%, rgba(110,202,212,1) 40%, rgba(255,255,255,1) 60%, rgb(223, 223, 223) 60%, rgba(200,200,200,1) 70%, rgba(14,14,14,1) 100%);
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;  
+    margin: 0;
+    padding: 0;
+    font-family: adelle-sans, sans-serif;
+}
+body {
+    background: var(--gradient1);
+    color: var(--font-color);
+    text-align: center;
+}
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+
+
+/*########### HEADER ############*/
+header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+}
+header h1 {
+    margin: 0 auto;
+    font-size: 2em;
+    letter-spacing: .03em;
+    margin-bottom: .1em;
+}
+header h2 {
+    margin: 0 auto;
+    font-size: 1.5em;
+    font-weight: 300;
+    letter-spacing: -.01em;
+    word-spacing: .1em;
+}
+header h2 span:first-child {
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+}
+header h2 span:last-child {
+    font-family: 'Pacifico', cursive;
+}
+
+
+
+
+/*############ MAIN ############*/
+main {
+    height: 20vh;
+}
+main ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 40em;
+}
+main ul li {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+main ul li a {
+    padding: .3em 1em;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--font-color);
+    background-color: var(--background-color);
+    border-radius: .2em;
+    min-width: 6em;
+}
+main ul li a:hover {
+    color: var(--accent-color);
+}
+main ul li a:active {
+    background-color: var(--font-color);
+    color: var(--background-color);
+}
+main ul li a:focus {
+    border: solid 4px var(--accent-color)
+}
+
+
+
+/*########### FOOTER ###########*/
+footer {
+    display: flex;
+    height: 40vh;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+footer ul li{
+    list-style: none;
+}
+footer ul li:nth-child(1){
+    margin-bottom: 1.5em;
+}
+footer ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--font-color);
+    height: 100%;
+}
+footer ul li a img {
+    width: 2em;
+    vertical-align: bottom;
+}
+footer ul li a:hover {
+    filter: brightness(70%);
+}
+footer ul li a:focus {
+    border: solid 4px var(--accent-color);
+}
