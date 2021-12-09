@@ -9,31 +9,54 @@
     <title>Rick van Dijken</title>
         
     <link href="styles/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/lsn1utb.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
 </head>
 
 <body>
     <header>
-        <h1>Rick van Dijken</h1>
-        <h2><span>Frontend</span> & <span>Design</span></h2>
+        <img src="./images/ricklogo.svg" alt="Rick van Dijken logo">
     </header>
 
     <main>
-        <ul>
-            <li><a href="about.html">about</a></li>
-            <li><a href="projects.html">projects</a></li>
-        </ul>
+        <article class="cards">
+            <h2>Projects</h2>
+            <section><a href="">project 1</a></section>
+            <section><a href="">project 2</a></section>
+            <section><a href="">project 3</a></section>
+            <section><a href="">project 4</a></section>
+            <section><a href="">project 5</a></section>
+            <section><a href="">project 6</a></section>
+        </article>
+        
+        <article class="about">
+            <section>
+                <h3>About me</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing 
+                    and typesetting industry. Lorem Ipsum has been 
+                    the industry's standard dummy text ever since 
+                    the 1500s, when an unknown printer took a 
+                    galley of type and scrambled it to make a type 
+                    specimen book. It has survived not only five 
+                    centuries, but also the leap into electronic 
+                    typesetting, remaining essentially unchanged.</p>
+            </section>
+            <section>
+                <h3>Contact</h3>
+                <ul>
+                    <li>rvdijken98@gmail.com</li>
+                    <li><a target="_blank" href="https://www.linkedin.com/in/rick-van-dijken-5464b01bb/"><img src="./images/In-White-128.png" alt="LinkedIn"></a></li>
+                </ul>
+            </section>
+        </article>
     </main>
 
-    <footer>            
-        <h3>contact</h3>
-        <ul>
-            <li>rvdijken98@gmail.com</li>
-            <li><a target="_blank" href="https://www.linkedin.com/in/rick-van-dijken-5464b01bb/"><img src="./images/In-White-128.png" alt="LinkedIn"></a></li>
-        </ul>
+    <footer>
+        <nav>
+            <button><img src="./images/me_icon.svg" alt="about me and contact"></button>
+            <button><img src="./images/settings_icon.svg" alt="settings"></button>
+        </nav>
     </footer>
 </body>
 
