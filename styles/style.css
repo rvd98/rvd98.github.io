@@ -5,15 +5,16 @@
 
 :root {
 --background-color-header: #000000;
---background-color-header-darkmode: #FFFFFF;
 --background-color-main: #E6E6E6;
---background-color-main-darkmode: #000000;
+--background-color-main-darkmode: hsl(220, 10%, 12%);
 --background-color-card: #FFFFFF;
 --font-color-less-important: #a0a0a0;
 --font-color: #000000;
 --accent-color-one: hsl(200 100% 50%);
 --accent-color-two: hsl(200 100% 40%);
 --accent-color-three: hsl(200 100% 30%);
+--darkmode-untoggled: hsl(220, 10%, 12%);
+--darkmode-toggled: hsl(220, 11%, 22%);
 }
 
 *, *::after, *::before {
@@ -47,6 +48,89 @@ header img {
     width: 2.6em;
 }
 
+/* Styling voor de switch container */
+.mode-switch {
+    position: absolute;
+    right: 1.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--darkmode-untoggled);
+    transition: .4s;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.icon {
+    font-size: 12px;
+    line-height: 24px;
+    z-index: 1; /* Zorg dat ze onder de witte knop blijven */
+    user-select: none;
+}
+
+input:checked + .slider {
+    background-color: var(--darkmode-toggled);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Optioneel: verberg het zonnetje als hij op dark mode staat en vice versa */
+input:checked + .slider .sun {
+    opacity: 0.5;
+}
+
+input:not(:checked) + .slider .moon {
+    opacity: 0.5;
+}
+
+/* De daadwerkelijke Dark Mode logica */
+body.dark-mode main {
+    background-color: var(--background-color-main-darkmode);
+}
+
+/* Optioneel: pas ook de tekstkleur aan voor leesbaarheid in darkmode */
+body.dark-mode .card-section h2, 
+body.dark-mode .about p {
+    color: white;
+}
+
 /*############ MAIN ############*/
 main {
     background-color: var(--background-color-main);
@@ -78,7 +162,6 @@ main {
 }
 
 .project-card {
-    background-color: red;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -205,20 +288,36 @@ main {
 
 /*########### FOOTER ###########*/
 footer {
-    background-color: var(--background-color-header); /* Use a darker color for contrast */
-    height: 5em;
-    width: 100%; /* 100vw can cause horizontal scrolling; 100% is safer */
-    position: sticky;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
+    background-color: var(--background-color-header);
+    padding: 1rem 0; /* Iets meer ruimte */
+    width: 100%;
     border-top: 2px solid var(--accent-color-one);
+    color: var(--background-color-main);
 }
 
-footer p {
-    color: var(--background-color-main);
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-contact {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-contact a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-contact img {
+    width: 1.5rem; /* Formaat van LinkedIn icoon */
+    display: block;
 }
 
 /* Optioneel: iets meer witruimte op tablets */
@@ -226,6 +325,8 @@ footer p {
     .container {
         padding: 0 3rem;   /* Meer ademruimte op grotere schermen */
     }
+
+    
 }
 
 /* Vanaf een gemiddelde desktop/monitor breedte: dwing 2 kolommen af */
