@@ -5,13 +5,15 @@
 
 :root {
 --background-color-header: #000000;
+--background-color-header-darkmode: #FFFFFF;
 --background-color-main: #E6E6E6;
+--background-color-main-darkmode: #000000;
 --background-color-card: #FFFFFF;
 --font-color-less-important: #a0a0a0;
 --font-color: #000000;
---accent-color-one: #05BE68;
---accent-color-two: #02A66B;
---accent-color-three: #027454;
+--accent-color-one: hsl(200 100% 50%);
+--accent-color-two: hsl(200 100% 40%);
+--accent-color-three: hsl(200 100% 30%);
 }
 
 *, *::after, *::before {
@@ -44,42 +46,129 @@ header img {
 /*############ MAIN ############*/
 main {
     background-color: var(--background-color-main);
-    padding-top: 1.5em;
+    padding: 1.5em 4em;
 }
 
-main article {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: .6em;
-}
-
-.cards h2 {
-    font-size: 1.2em;
+.card-section h2 {
+    font-size: 1.5em;
     text-align: center;
-    color: var(--background-color-card);
-    background-color: var(--accent-color-two);
-    margin: .3em auto .6em auto;
-    padding: .1em 0;
-    border-radius: 1em;
-    width: 5.5em;
+    color: var(--font-color);
+    margin-bottom: 1.5em;
 }
 
-main .cards section {
-    background-color: var(--background-color-card);
-    margin: 0 1.4em;
-    height: 12em;
-    box-shadow: 0px 3px 5px #cecece;
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
 }
 
-main .cards section a {
-    display: block;
+.project-card {
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius:.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Fix for Safari hover clipping bug */
+    mask-image: -webkit-radial-gradient(white, black);
+}
+
+
+.project-card figure {
+    width: 100%;       /* It takes the full width of the card */
+    aspect-ratio: 4 / 3; /* Modern CSS way to lock ratio */
+    overflow: hidden;  /* Prevents image spill-over */
+    position: relative; /* Essential for the overlay positioning */
+}
+
+.project-card img {
+    display: block; /* Removes inline "ghost" spacing */
     width: 100%;
     height: 100%;
-    text-decoration: none;
-    color: var(--font-color);
+    object-fit: cover; /* The "magic" property that crops without stretching */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.05); /* Slight zoom on hover for effect */
+}
+
+/* Container for the tags to sit on top of the image */
+.tag-container {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    flex-wrap: wrap; /* Allows tags to wrap if there are many */
+    gap: 0.5rem;
+    z-index: 10; /* Keep them above the image but below the hover overlay if desired */
+}
+
+/* Base tag styling */
+.tag {
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem; /* Fully rounded corners */
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: 1.2em;
+    text-transform: uppercase;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Category Colors */
+.ux { background-color: #ff4757; }          /* Red/Coral */
+.ui { background-color: #3742fa; }          /* Bright Blue */
+.visual { background-color: #ffa502; color: black; }  /* Yellow/Orange */
+.frontend { background-color: #2ed573; }    /* Green */
+.prototyping { background-color: #1e90ff; } /* Sky Blue */
+.interaction { background-color: #945bff; } /* Soft Purple */
+
+
+/* 2. Create the Overlay Effect */
+.card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Dark background and white text */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    
+    /* Center the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 2em;
+    box-sizing: border-box;
+
+    /* Hide by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 3. Show content and style links on hover */
+.project-card:hover .card-content {
+    opacity: 1;
+}
+
+
+.card-content h3 a {
+    color: white;
+    text-decoration: none;
+}
+
+.card-content h3 a::after {
+    /* Make the whole card clickable if the link is inside */
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
 .about {
@@ -103,12 +192,16 @@ main .cards section a {
 
 /*########### FOOTER ###########*/
 footer {
-    background-color: var(--background-color-main);
-    height: 6em;
-    width: 100vw;
+    background-color: var(--background-color-header); /* Use a darker color for contrast */
+    height: 5em;
+    width: 100%; /* 100vw can cause horizontal scrolling; 100% is safer */
     position: sticky;
-    left: 0;
     bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-top: 2px solid var(--accent-color-one);
 }
 
 footer nav {
