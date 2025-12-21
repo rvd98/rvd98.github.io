@@ -24,7 +24,11 @@
 }
 
 
-
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
 /*########### HEADER ############*/
 header {
@@ -33,7 +37,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: .5em solid var(--accent-color-one);
+    border-bottom: .4em solid var(--accent-color-one);
     position: sticky;
     top: 0;
     left: 0;
@@ -46,7 +50,16 @@ header img {
 /*############ MAIN ############*/
 main {
     background-color: var(--background-color-main);
-    padding: 1.5em 4em;
+    /* Verwijder de oude padding: 1.5em 4em; */
+    padding: 1.5em 0; 
+    flex-grow: 1; /* Duwt de footer altijd naar de bodem */
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;     /* De 'vrije' ruimte verschijnt op schermen breder dan dit */
+    margin: 0 auto;        /* Centreert de content */
+    padding: 0 1.5rem;     /* Je 'safety margin' voor mobiel (ca. 24px) */
 }
 
 .card-section h2 {
@@ -58,7 +71,7 @@ main {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr; /* Standaard 1 kolom op smalle schermen */;
     gap: 2rem;
     list-style: none;
     padding: 0;
@@ -204,24 +217,22 @@ footer {
     border-top: 2px solid var(--accent-color-one);
 }
 
-footer nav {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: baseline;
-    justify-content: center;
-    gap: .4em;
+footer p {
+    color: var(--background-color-main);
 }
 
-footer nav button {
-    margin-top: 1em;
-    border: none;
-    background: transparent;
+/* Optioneel: iets meer witruimte op tablets */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 3rem;   /* Meer ademruimte op grotere schermen */
+    }
 }
 
-footer nav button:first-child {
-    width: 5em;
-}
-
-footer nav button:last-child {
-    width: 3.5em;
+/* Vanaf een gemiddelde desktop/monitor breedte: dwing 2 kolommen af */
+@media (min-width: 1024px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); 
+        /* 'repeat(2, 1fr)' maakt precies 2 gelijke kolommen, 
+           ongeacht hoe breed het scherm is. */
+    }
 }
