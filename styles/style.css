@@ -13,8 +13,8 @@
 --accent-color-one: hsl(200 100% 50%);
 --accent-color-two: hsl(200 100% 40%);
 --accent-color-three: hsl(200 100% 30%);
---darkmode-untoggled: hsl(220, 10%, 12%);
---darkmode-toggled: hsl(220, 11%, 22%);
+--darkmode-untoggled: hsl(220, 3%, 21%);
+--darkmode-toggled: hsl(220, 5%, 24%);
 }
 
 *, *::after, *::before {
@@ -42,6 +42,7 @@ header {
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 1000; /* Zorgt dat de header altijd boven andere content blijft */
 }
 
 header img {
